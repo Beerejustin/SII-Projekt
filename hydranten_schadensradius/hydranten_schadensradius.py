@@ -15,8 +15,8 @@ try:
     # In projiziertes Koordinatensystem (UTM Zone 32N für Münster) umwandeln
     gdf = gdf.to_crs(epsg=25832)
 
-    # Schadensradius zufällig zwischen 100 und 200 Metern setzen
-    gdf["radius_m"] = np.random.randint(100, 201, size=len(gdf))
+    # Schadensradius 50m um die Hydranten hinzufügen
+    gdf["radius_m"] = 50
 
     # Erstellung der Pufferzonen um die Hydranten
     gdf["geometry"] = gdf.apply(lambda row: row.geometry.buffer(row.radius_m), axis=1)
