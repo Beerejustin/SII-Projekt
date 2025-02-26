@@ -22,7 +22,7 @@
     <div id="map"></div>
     <script>
       // initialize Leaflet
-      var map = L.map('map').setView([51.965749, 7.617958], 18);
+      var map = L.map('map').setView([51.965749, 7.617958], 14);
 
       // add the OpenStreetMap tiles
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,9 +33,11 @@
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
 
-      var wfsLayer = L.tileLayer.wfs("http://localhost:8080/geoserver/hydrants/wfs", {
-            layers: 'hydrants:layer',  // Hydranten mit Puffer
-            format: 'points/json',
+      var wmsLayer = L.tileLayer.wms("http://localhost:8080/geoserver/A13/wms", {
+        layers: 'A13:hydranten_schadensradius', // Replace with your layer name
+        format: 'image/png',
+        transparent: true,
+        opacity : 0.3
         }).addTo(map);
         
     </script>
