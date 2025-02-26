@@ -34,7 +34,7 @@
       L.control.scale({imperial: true, metric: true}).addTo(map);
 
       var wmsLayer = L.tileLayer.wms("http://localhost:8080/geoserver/A13/wms", {
-        layers: 'A13:hydranten_schadensradius', // Replace with your layer name
+        layers: 'A13:hydranten_schadensradius', // Replace with your workspace_name:layer_ame
         format: 'image/png',
         transparent: true,
         opacity : 0.3
