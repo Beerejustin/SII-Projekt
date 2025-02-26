@@ -1,8 +1,4 @@
-# geoserver-project/geoserver-project/README.md
-
 # GeoServer Project
-
-This project sets up a GeoServer instance using Docker to serve geospatial data from a GeoPackage. The front end utilizes Leaflet for map visualization.
 
 ## Project Structure
 
@@ -15,28 +11,6 @@ This project sets up a GeoServer instance using Docker to serve geospatial data 
 ## Setup Instructions
 
 1. **Clone the Repository**:
-   ```
+   ```sh
    git clone <repository-url>
    cd geoserver-project
-   ```
-
-2. **Build and Run the Docker Container**:
-   ```
-   docker-compose up --build
-   ```
-
-3. **Access GeoServer**:
-   Open your web browser and navigate to `http://localhost:8080/geoserver`.
-
-4. **View the Map**:
-   Open `src/index.html` in your web browser to view the map with the GeoServer layer.
-
-## Usage
-
-- The GeoServer serves the data from `data/geopackage.gpkg`.
-- The Leaflet map in `src/index.html` displays the geospatial data served by GeoServer.
-
-## Additional Information
-
-- Ensure Docker is installed and running on your machine.
-- Modify the GeoPackage and map settings as needed for your specific use case.
