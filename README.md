@@ -1,4 +1,4 @@
-﻿# **SII-Projekt: Feuerhydranten-Krisensimulation in Münster**
+# **SII-Projekt: Feuerhydranten-Krisensimulation in Münster**
 
 ## **Projektübersicht**
 Dieses Projekt simuliert den potenziellen Einfluss von Feuerhydrantenausfällen in Münster, insbesondere in der Kneipenstraße. Ziel ist es, gefährdete Bereiche zu identifizieren, falls ein Feuerhydrant ausfällt oder beschädigt wird.
@@ -64,3 +64,19 @@ Dieses Projekt simuliert den potenziellen Einfluss von Feuerhydrantenausfällen 
 - **Overpass API** zur Live-Abfrage der OSM-Hydrantendaten.
 
 ## **Projektstruktur**
+📂 sii-projekt ├── 📂 data │ ├── geopackage.gpkg # Simulationsdaten │ ├── hydranten.geojson # OSM-Rohdaten ├── 📂 scripts │ ├── hydranten_schadensradius.py # Python-Skript zur Datenverarbeitung ├── 📂 frontend │ ├── index.html # Leaflet-Kartenansicht │ ├── js/map.js # JavaScript zur Kartenvisualisierung ├── 📂 backend │ ├── docker-compose.yml # Docker-Setup für GeoServer │ ├── Dockerfile # GeoServer-Image Konfiguration ├── README.md # Projektdokumentation
+
+
+## **Setup & Installation**
+### **1. Repository klonen**
+```sh
+git clone <repository-url>
+cd sii-projekt
+
+
+
+2. **Docker-Container mit GeoServer starten**:
+   ```sh
+   docker-compose up -d
+
+   running under http://localhost:8080/geoserver
