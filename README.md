@@ -1,4 +1,4 @@
-# SII Project: Fire Hydrant Crisis Simulation in Münster
+﻿# SII Project: Fire Hydrant Crisis Simulation in Münster
 
 ## Project Overview
 This project simulates the potential impact of fire hydrant failures in Münster, specifically in the Kneipenstraße area. The goal is to identify areas that are particularly vulnerable if a fire hydrant fails or is damaged.
