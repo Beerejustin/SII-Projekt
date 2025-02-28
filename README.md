@@ -1,47 +1,66 @@
-﻿# SII-Projekt: Feuerhydranten Krisensimulation
+﻿# **SII-Projekt: Feuerhydranten-Krisensimulation in Münster**
 
-## Overview
+## **Projektübersicht**
+Dieses Projekt simuliert den potenziellen Einfluss von Feuerhydrantenausfällen in Münster, insbesondere in der Kneipenstraße. Ziel ist es, gefährdete Bereiche zu identifizieren, falls ein Feuerhydrant ausfällt oder beschädigt wird.
 
-This project simulates the impact of fire hydrant failures in Münster, specifically focusing on the Kneipenstraße area. The goal is to identify areas that are particularly vulnerable if a fire hydrant fails or is damaged.
+## **Use Case Szenario**
+### **Forschungsfrage**  
+*"Welche Bereiche in Münster sind besonders gefährdet, wenn ein Feuerhydrant ausfällt oder beschädigt wird?"*
 
-## Use Case Scenario
+### **Anwendungsfall**  
+- Eine effektive Feuerwehrversorgung hängt von funktionierenden Hydranten ab.
+- Ein Ausfall eines oder mehrerer Hydranten könnte die Brandbekämpfung in bestimmten Gebieten erheblich beeinträchtigen.
+- Diese Simulation hilft Behörden, Risikogebiete zu erkennen und vorbeugende Maßnahmen zu ergreifen.
 
-**Scenario**: Kneipenstraße, Münster
+## **Datenquellen & Datenaufbereitung**
+### **Externe Datenquelle (interoperabler Webdienst)**
+- **OpenStreetMap (OSM) - Overpass API**  
+  - Enthält Geodaten zu Feuerhydranten in Münster.
+  - Abfrage mittels Overpass API:
+    ```overpassql
+    [out:json][timeout:25];
+    {{geocodeArea:Münster}}->.searchArea;
+    (
+      node["emergency"="fire_hydrant"](area.searchArea);
+    );
+    out body;
+    >;
+    out skel qt;
+    ```
+  - Ergebnisse werden in **GeoJSON**-Format exportiert.
 
-**Research Question**: "Which areas in Münster are particularly at risk if a fire hydrant fails or is damaged?"
+### **Eigener Datensatz (Simulationsdaten)**
+- **Berechneter Schadensradius für jeden Hydranten**  
+- **Erzeugt durch Python-Skript `hydranten_schadensradius.py`**
+  - Liest die OSM-Daten ein.
+  - Erstellt Pufferzonen (Schadensradien) um jeden Hydranten.
+  - Konvertiert die Daten in ein **GeoPackage (.gpkg)**.
 
-## Data Sources & Preparation
+### **Datenmodell**
+| **Feld**       | **Beschreibung**                     | **Datentyp**  |
+|---------------|---------------------------------|--------------|
+| `id`         | Eindeutige ID des Hydranten    | Integer      |
+| `coordinates` | Geografische Koordinaten       | Punkt (Lat, Lng) |
+| `extent`     | Berechneter Schadensradius (m) | Float        |
+| `location`   | Straßenname oder Ort           | String       |
+| `type`       | Art des Hydranten              | String       |
 
-### External Data Source
-- **OpenStreetMap (OSM)**: Used for fire hydrant data, city maps, and street data. Data is retrieved via the Overpass API or other interfaces.
+### **Datenformat & Speicherung**
+- **Encoding**: GeoJSON für die Verarbeitung, GeoPackage für die Speicherung.
+- **Speicherung**: Datei-basiert im Verzeichnis `data/` als `geopackage.gpkg`.
 
-### Own Dataset (Simulation Results)
-- **Damage Radius Calculation**: For each hydrant, a "damage radius" is calculated.
-- **Data Structure**: GeoJSON
-- **Storage**: JSON
+## **Technologien**
+### **Backend**
+- **GeoServer**  
+  - Bereitstellung der Simulationsdaten als **WFS** (Web Feature Service).
+  - Lokaler Betrieb via Docker oder direkter Installation.
 
-## Technologies
+### **Frontend**
+- **Leaflet.js**  
+  - Interaktive Karte zur Visualisierung der Hydranten und ihrer Schadensradien.
 
-### Backend
-- **GeoServer**: Used for serving geospatial data. It can be run locally or via Docker.
+### **Datenbereitstellung**
+- **GeoServer WFS API** zur Abfrage der Simulationsdaten.
+- **Overpass API** zur Live-Abfrage der OSM-Hydrantendaten.
 
-### Frontend
-- **Leaflet**: Used for visualization, potentially with additional overlays for the simulation.
-
-### Data Retrieval
-- **REST API** or **WFS (Web Feature Service)**: Used for fetching data.
-
-## Project Structure
-
-- **docker-compose.yml**: Defines the services, networks, and volumes for the Docker application.
-- **Dockerfile**: Contains instructions for building the Docker image for GeoServer.
-- **data/geopackage.gpkg**: The GeoPackage containing the geospatial data.
-- **src/index.html**: The main HTML file that sets up the web page and includes Leaflet.
-- **src/js/map.js**: JavaScript code for initializing the Leaflet map and adding the GeoServer layer.
-
-## Setup Instructions
-
-### Clone the Repository
-   ```sh
-   git clone <repository-url>
-   cd geoserver-project
+## **Projektstruktur**
