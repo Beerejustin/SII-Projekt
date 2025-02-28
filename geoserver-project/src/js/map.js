@@ -10,8 +10,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // show the scale bar on the lower left corner
 L.control.scale({imperial: true, metric: true}).addTo(map);
 
-// add the GeoServer WFS layer
-var wfsLayer = L.tileLayer.wfs("http://localhost:8080/geoserver/wfs", {
-  layers: 'hydrants:hydranten_schadensradius',  // Ersetzen Sie 'hydrants:hydranten_schadensradius' durch den tatsächlichen Layer-Namen
-  format: 'application/json',
+// add the GeoServer WMS layer
+var wmsLayer = L.tileLayer.wms("http://localhost:8080/geoserver/Hydranten/wms", {
+  layers: 'Hydranten:hydranten_schadensradius',
+  format: 'image/png',
+  transparent: true,
+  opacity: 0.5,
 }).addTo(map);
