@@ -21,6 +21,9 @@ try:
     # Erstellung der Pufferzonen um die Hydranten
     gdf["geometry"] = gdf.apply(lambda row: row.geometry.buffer(row.radius_m), axis=1)
 
+    # Nur die gewünschten Spalten auswählen
+    gdf = gdf[["id", "radius_m", "geometry", "fire_hydrant:type"]]
+
     # GeoPackage-Dateipfad
     output_path = Path(__file__).parent / "hydranten_schadensradius.gpkg"
 

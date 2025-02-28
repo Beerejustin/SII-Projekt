@@ -1,16 +1,16 @@
 <layer>
   <name>hydranten_schadensradius</name>
-  <id>LayerInfoImpl-7478fcfa:195423ab325:-7ff8</id>
+  <id>LayerInfoImpl-2f553025:1954d71099a:-7ea4</id>
   <type>VECTOR</type>
   <defaultStyle>
     <id>StyleInfoImpl--46baeabb:1954231da3f:-7ffe</id>
   </defaultStyle>
   <resource class="featureType">
-    <id>FeatureTypeInfoImpl-7478fcfa:195423ab325:-7ff9</id>
+    <id>FeatureTypeInfoImpl-2f553025:1954d71099a:-7ea5</id>
   </resource>
   <attribution>
     <logoWidth>0</logoWidth>
     <logoHeight>0</logoHeight>
   </attribution>
-  <dateCreated>2025-02-26 12:36:50.15 UTC</dateCreated>
+  <dateCreated>2025-02-28 16:57:35.227 UTC</dateCreated>
 </layer>

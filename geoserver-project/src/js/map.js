@@ -12,7 +12,7 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 
 // add the GeoServer WMS layer
 var wmsLayer = L.tileLayer.wms("http://localhost:8080/geoserver/Hydranten/wms", {
-  layers: 'Hydranten:hydranten_schadensradius',
+  layers: 'Hydranten:hydranten_r',
   format: 'image/png',
   transparent: true,
   opacity: 0.5,
