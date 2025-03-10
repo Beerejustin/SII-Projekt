@@ -70,7 +70,7 @@ This project simulates the potential impact of fire hydrant failures in Münster
 ### 1. Clone the Repository
 ```sh
 git clone --branch Dockercontainer --single-branch https://github.com/Beerejustin/SII-Projekt.git
-cd sii-project
+cd SII-Projekt
 ```
 
 ### 2. Start the Docker Container with GeoServer
